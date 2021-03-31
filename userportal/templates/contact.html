@@ -1,0 +1,198 @@
+{% extends 'basic.html' %}
+
+{% block css %}
+    <style>
+        /* The alert message box */
+        .alert {
+          padding: 20px;
+          background-color: #f44336;
+          color: white;
+          width: 50%;
+          margin: auto;
+          opacity: 1;
+          transition: opacity 0.6s;
+          margin-bottom: 15px;
+        }
+
+        .alert.success {background-color: #4CAF50;}
+        .alert.info {background-color: #2196F3;}
+        .alert.warning {background-color: #ff9800;}
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<!-- banner -->
+        <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    {% if yes == "yes" %}
+                    <div class="alert success">
+                      <span class="closebtn">&times;</span>  
+                      <strong>Doc-Security :</strong> {{msg}}
+                    </div>
+                    {% endif %}
+                    <h2 class="title-inner">
+                        Contact Us
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+        <!-- //banner -->
+        <!-- breadcrumbs -->
+        <div class="crumbs text-center">
+            <div class="container">
+                <div class="row">
+                    <ul class="btn-group btn-breadcrumb bc-list">
+                        <li class="btn btn1">
+                            <a href="index.html">
+                                <i class="glyphicon glyphicon-home"></i>
+                            </a>
+                        </li>
+                        <li class="btn btn2">
+                            <a href="contact.html">contact us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--//breadcrumbs ends here-->
+        <!-- contact -->
+        <div class="section contact" id="contact">
+            <div class="container">
+                <h4 class="rad-txt text-center">
+                    <span class="abtxt1">contact</span>
+                    <span class="abtext">us</span>
+                </h4>
+                <div class="contact-form">
+                    <div class="col-md-7">
+                        <!-- contact form grid -->
+                        <div class="contact-top1">
+                            <h5>send us a note</h5>
+                            <form action="/contact/" class="form_w3layouts" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="fname" placeholder="First Name" required>
+                                <input type="text" name="lname" placeholder="Last Name" required>
+
+                                <input class="email" type="email" name="cemail" placeholder="Email" required>
+                                <textarea placeholder="Message" name="msg" required></textarea>
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                        <!--  //contact form grid ends here -->
+                    </div>
+                    <!-- contact map grid -->
+                    <div class="col-md-5 map contact-right">
+                        <div class="contact-top1">
+                            <h5>get directions</h5>
+                           <iframe  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=23.03831547676995,%2072.54336268838357+()&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.maps.ie/route-planner.htm">Plan A Journey</a></div>
+                        </div>
+                    </div>
+                    <!--//contact map grid ends here-->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- contact details -->
+                <div class="contact-bottom">
+                    <h6>contact info</h6>
+                    <!-- contact details left -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="contact-left">
+                            <div class="address">
+                                <h5>Address:</h5>
+                                <p>
+                                   House, Street
+                                    <br> City Area</p>
+                            </div>
+                            <div class="address address-mdl">
+                                <h5>phone:</h5>
+                                <p>
+                                    91 91 91 91 91</p>
+                                <p>
+                                    92 92 92 92 92</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //contact details left -->
+                    <!-- contact details right -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="contact-right">
+                            <div class="address">
+                                <h5>Email:</h5>
+                                <p>
+                                    <a href="mailto:mail@docsecurity.in">mail@docsecurity.in</a>
+                                </p>
+                                <p>
+                                    <a href="mailto:mail@docsecurity.in">mail@docsecurity.in</a>
+                                </p>
+                            </div>
+                            <div class="footer-social address  address-mdl">
+                                <h5>let's get social</h5>
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <span class="fa fa-facebook icon_facebook"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="fa fa-twitter icon_twitter"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="fa fa-dribbble icon_dribbble"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="fa fa-google-plus icon_g_plus"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- //contact-details right -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- //contact details ends here -->
+            </div>
+        </div>
+        <!-- //contact -->
+
+{% endblock %}
+
+{% block js %}
+    <script>
+       var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+          }
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zxx">
+{% load static %}
+<head>
+    <title>Document Security</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    {% block css %}{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="{% static 'userportal/css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- shop css -->
+    <link href="{% static 'userportal/css/shop.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'userportal/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="{% static 'userportal/css/font-awesome.css' %}" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <!-- logo -->
+    <link href="//fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <!-- titles -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+    <!-- body -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <!-- //online-fonts -->
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div id="home">
+        <!-- header -->
+        <!-- navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="main-nav">
+                <div class="container">
+
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Document</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1>
+                            <a class="navbar-brand" href="/">doc security</a>
+                        </h1>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse nav-right">
+                        <ul class="nav navbar-nav navbar-left cl-effect-15">
+                            <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                            <li class="hidden">
+                                <a class="page-scroll" href="#page-top"></a>
+                            </li>
+                            <li>
+                                <a href="/first/">Home</a>
+                            </li>
+                            
+                            
+                            {% block content %}{% endblock %}
+                                
+                            
+
+                        </ul>
+                        <!-- search-bar -->
+                        
+                        <!-- //search-bar ends here -->
+                        <!-- shopping cart -->
+                        
+                    <!-- /.navbar-collapse -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /.container -->
+            </div>
+        </nav>
+    </div>
+
+
+    {% block body %}{% endblock %}
+<!-- //footer-layouts -->
+        <!-- footer -->
+        <div class="footer-bottom section">
+            <div class="container">
+                <!-- newsletter -->
+                <div class="subscribe-main section-w3layouts text-center">
+                    <h4 class="rad-txt">
+                        <span class="abtxt1">Quick Contact</span>
+                        <span class="abtext">Doc Security </span>
+                    </h4>
+                    
+                </div>
+                <!-- //newsletter ends here -->
+                <!-- footer grids-->
+                <div class="footer-cpy">
+                    <!-- footer-grid1 -->
+                    <div class="col-md-4 col-sm-6 footer-logo">
+                        <h3>
+                            <a href="index.html">DocSecurity</a>
+                        </h3>
+                        <h4>about us</h4>
+                        <p>Secure your important docs by assiginig passwords to it.     </p>
+                    </div>
+                    <!-- //footer-grid1 -->
+                    <!-- footer-grid2 -->
+                    <div class="col-md-4 col-sm-6 footer-nav text-center">
+                        <h4>navigation</h4>
+                        <ul>
+                            <li>
+                                <a href="/first/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/doc1/">Documents</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //footer-grid2 -->
+                    <!-- footer-grid3 -->
+                   
+                    <!-- //footer-grid3 -->
+                    <!-- footer-grid4 -->
+                    <div class="col-md-4 col-sm-6 contact-foot text-right">
+                        <h4>contact us</h4>
+                        <ul>
+                            <li>
+                                <span class="fa fa-home"></span>
+                                Address
+                                <br> Lane.
+                            </li>
+                            <li>
+                                <span class="fa fa-phone"></span>
+                               989798798797
+                            </li>
+                            <li>
+                                <span class="fa fa-envelope"></span>
+                                <a href="mailto:info@example.com">mail@docsecurity.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //footer-grid4 -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- //footer-grids -->
+                <!-- footer social -->
+                <div class="footer-social text-center">
+                    <h4>stay connected</h4>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-facebook icon_facebook"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-twitter icon_twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-dribbble icon_dribbble"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-google-plus icon_g_plus"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //footer social -->
+            </div>
+            <!-- //footer container -->
+        </div>
+        <!-- //footer -->
+        <div class="cpy-right">
+            <p>© Document Security 
+            </p>
+        </div>
+    </div>
+    <!-- //home -->
+    <!-- js -->
+    <script src="{% static 'userportal/js/jquery-2.2.3.min.js' %}"></script>
+    <!-- //js -->
+    <!--search jQuery-->
+    <script src="{% static 'userportal/js/main.js' %}"></script>
+    <!--search jQuery-->
+    <!-- cart-js -->
+    <script src="{% static 'userportal/js/minicart.js' %}"></script>
+    <script>
+        chr.render();
+
+        chr.cart.on('new_checkout', function (evt) {
+            var items, len, i;
+
+            if (this.subtotal() > 0) {
+                items = this.items();
+
+                for (i = 0, len = items.length; i < len; i++) {}
+            }
+        });
+    </script>
+    <!-- //cart-js -->
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static 'userportal/js/scrolling-nav.js' %}"></script>
+    <!-- //fixed-scroll-nav-js -->
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!-- //dropdown nav -->
+    <!-- start-smooth-scrolling -->
+    <script src="{% static 'userportal/js/move-top.js' %}"></script>
+    <script src="{% static 'userportal/js/easing.js' %}"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="{% static 'userportal/js/SmoothScroll.min.js' %}"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- about bottom grid Numscroller -->
+    <script src="{% static 'userportal/js/numscroller-1.0.js' %}"></script>
+    <!-- //about bottom grid Numscroller -->
+    <!-- Bootstrap core JavaScript
+ ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'userportal/js/bootstrap.js' %}"></script>
+    {% block js %}{% endblock %}
+</body>
+
+</html>

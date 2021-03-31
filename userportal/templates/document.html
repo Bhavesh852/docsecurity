@@ -1,0 +1,78 @@
+{% extends 'basic.html' %}
+
+{% block body %}        
+<!-- banner -->
+        <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    <h2 class="title-inner">
+                        Documents
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+        <!-- //banner -->
+        <!-- breadcrumbs -->
+         <div class="crumbs text-center">
+            <div class="container">
+                <div class="row">
+                    <ul class="btn-group btn-breadcrumb bc-list">
+                        <li class="btn btn1">
+                            <a href="index.html">
+                                <i class="glyphicon glyphicon-home"></i>
+                            </a>
+                        </li>
+                        <li class="btn btn2">
+                            <a href="/document/">Documents </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--//breadcrumbs ends here-->
+        <div class="innerf-pages section">
+            <div class="container-cart">
+                <!-- product left -->
+                
+                <!-- //product left -->
+                <!-- product right -->
+                <div class="left-ads-display col-md-9">
+                    <div class="wrapper_top_shop">
+                        <!-- product-sec1 -->
+                        <div class="product-sec1">
+                            
+                            <!-- row1-->
+                            {% for i in list1 %}
+                            <div class="col-md-3 product-men">
+                                <div class="product-chr-info chr">
+                                    <div class="caption">
+                                        
+                                        <h4>{{i.doc_title}}</h4>
+                                        <p>{{i.doc_category}}.format</p>
+
+                                            <a href="{{ i.doc.url }}" class="btn btn-secondary" target="_blank">
+                                                <button type="submit" class="chr-cart pchr-cart">Download Now
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                </button>
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+
+                        </div>
+
+                        <!-- //product-sec1 -->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+{% endblock %}

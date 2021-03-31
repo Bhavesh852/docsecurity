@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <style>
+        /* The alert message box */
+        .alert {
+          padding: 20px;
+          background-color: #f44336;
+          color: white;
+          width: 50%;
+          margin: auto;
+          opacity: 1;
+          transition: opacity 0.6s;
+          margin-bottom: 15px;
+        }
+
+        .alert.success {background-color: #4CAF50;}
+        .alert.info {background-color: #2196F3;}
+        .alert.warning {background-color: #ff9800;}
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+
+{% if user.is_authenticated %}
+	{% block content %}
+	{% if user.is_authenticated %}
+		<li class="dropdown">
+                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Documents
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/doc2/">my documents</a>
+                                    </li>
+                                    <li>
+                                        <a href="/doc1/">all documents</a>
+                                    </li>
+                                    
+								</ul>	
+                            </li>
+							
+		<li>
+		<a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">
+			<span class="fa fa-user nav-icon" aria-hidden="true">{{ request.user.first_name}}</span>
+            <b class="caret"></b>
+
+        </a>
+        <ul class="dropdown-menu">
+           	<li>
+            <a href="/logout/">Logout</a>
+            </li>
+        </ul>
+    	</li>
+    {% else %}
+   	<a href="/login/" title="SignIn & SignUp">
+   		<span class="fa fa-user nav-icon" aria-hidden="true"></span>
+   	</a>
+    {% endif %}
+	{% endblock %}
+
+       <div class="modal fade" id="public">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h4 class="modal-title">ADD Document:</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+            <form action="/docadd/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="doc_user" value="{{request.user.username}}">
+                <div class="form-group">
+                    <label for="exampleInputdoctitle">Document Title</label>
+                    <input type="text" class="form-control" name="doc_t" id="exampleInputdoctitle" aria-describedby="emailHelp" required>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="doc_cat">Document category</label>
+                    <select class="form-control form-control-lg" id="doc_c" name="doc_cat" required>
+                      <option>...</option>
+                      <option>pdf</option>
+                      <option>txt</option>
+                      <option>doc</option>
+                    </select>
+                </div>
+                
+                <input type="hidden" name="doc_tech" value="public">
+
+                <div class="form-group">
+                    <label for="doc">Upload Document</label>
+                    <input type="file" class="form-control-file" name="document" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+
+            </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="modal fade" id="private">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h4 class="modal-title">ADD Document:</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+            <form action="/pdocadd/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="pdoc_user" value="{{request.user.username}}">
+                <div class="form-group">
+                    <label for="exampleInputdoctitle">Document Title</label>
+                    <input type="text" class="form-control" name="doc_t" id="exampleInputdoctitle" aria-describedby="emailHelp" required>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="doc_cat">Document category</label>
+                    <select class="form-control form-control-lg" id="doc_c" name="doc_cat" required>
+                      <option>...</option>
+                      <option>pdf</option>
+                      <option>txt</option>
+                      <option>doc</option>
+                    </select>
+                </div>
+                
+                <input type="hidden" name="doc_tech" value="private">
+
+                <div class="form-group" id="pass1">
+                    <label for="pass">Password</label>
+                    <input type="password" class="form-control" name="pass" aria-describedby="emailHelp" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="doc">Upload Document</label>
+                    <input type="file" class="form-control-file" name="document" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>  
+            </div>
+            </div>
+          </div>
+        </div>
+    
+    <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    {% if yes == "yes" %}
+                    <div class="alert success">
+                      <span class="closebtn">&times;</span>  
+                      <strong>Doc-Security :</strong> {{msg}}
+                    </div>
+                    {% elif yes == "no" %}
+                    <div class="alert warning">
+                      <span class="closebtn">&times;</span>  
+                      <strong>Doc-Security :</strong> {{msg}}
+                    </div>
+                    {% else %}
+                    
+                    {% endif %}
+                    <h2 class="title-inner">
+                        Upload Your DOcs
+                    </h2>
+
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#private" type="submit">Private Doc</button>
+                    <button class="btn btn-warning" style="color: black;" data-toggle="modal" data-target="#public" type="submit">Public Doc</button>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>	
+
+{% else %}
+	
+    <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    <h2 class="title-inner">
+                        You are not logged In..
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+{% endif %}
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+       var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+          }
+        }
+    </script>
+
+{% endblock %}

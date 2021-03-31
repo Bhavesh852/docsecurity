@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <style>
+        /* The alert message box */
+        .alert {
+          padding: 20px;
+          background-color: #f44336;
+          color: white;
+          width: 50%;
+          margin: auto;
+          opacity: 1;
+          transition: opacity 0.6s;
+          margin-bottom: 15px;
+        }
+
+        .alert.success {background-color: #4CAF50;}
+        .alert.info {background-color: #2196F3;}
+        .alert.warning {background-color: #ff9800;}
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+	{% block content %}
+	{% if user.is_authenticated %}
+		<li class="dropdown">
+                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Documents
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/doc2/">My documents</a>
+                                    </li>
+                                    <li>
+                                        <a href="/doc1/">All documents</a>
+                                    </li>
+                                    
+								</ul>	
+                            </li>
+							
+		<li>
+		<a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">
+			<span class="fa fa-user nav-icon" aria-hidden="true">{{ request.user.first_name}}</span>
+            <b class="caret"></b>
+
+        </a>
+        <ul class="dropdown-menu">
+           	<li>
+            <a href="/logout/">Logout</a>
+            </li>
+        </ul>
+    	</li>
+    {% else %}
+   	<a href="/login/" title="SignIn & SignUp">
+   		<span class="fa fa-user nav-icon" aria-hidden="true"></span>
+   	</a>
+    {% endif %}
+	{% endblock %}
+
+    
+    <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    {% if yes == "yes" %}
+                    <div class="alert success">
+                      <span class="closebtn">&times;</span>  
+                      <strong>Doc-Security :</strong> {{msg}}
+                    </div>
+                    {% elif yes == "no" %}
+                    <div class="alert warning">
+                      <span class="closebtn">&times;</span>  
+                      <strong>Doc-Security :</strong> {{msg}}
+                    </div>
+                    {% else %}
+
+                    {% endif %}
+                    <h2 class="title-inner">
+                        Access All docs
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>	
+
+<!--         <div class="modal fade" id="private">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h4 class="modal-title">ADD Document:</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+            <form action="/pdocadd/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputdoctitle">Document Title</label>
+                    <input type="text" class="form-control" name="doc_t" id="exampleInputdoctitle" aria-describedby="emailHelp" required>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>  
+            </div>
+            </div>
+          </div>
+        </div> -->  
+
+
+
+    <!-- documentssssss -->
+    <!-- <h3>Public Document</h3> -->
+    <div class="innerf-pages section">
+            <div class="container-cart">
+                <!-- product left -->
+                
+                <!-- //product left -->
+                <!-- product right -->
+                <div class="left-ads-display col-md-9">
+                    <div class="wrapper_top_shop">
+                        <!-- product-sec1 -->
+                        <div class="product-sec1">
+                            <h3>Public</h3>
+                            <!-- row1-->
+                            {% for i in doc1 %}
+                            <div class="col-md-3 product-men">
+                                <div class="product-chr-info chr">
+                                    <div class="caption">
+                                        
+                                        <h4>{{i.doc_title}}</h4>
+                                        <p>{{i.doc_category}}.format</p>
+
+                                            <a href="{{ i.doc.url }}" class="btn btn-secondary" target="_blank">
+                                                <button type="submit" class="chr-cart pchr-cart">Download Now
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                </button>
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+
+                        </div>
+
+                        <!-- //product-sec1 -->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+    <div class="innerf-pages section">
+            <div class="container-cart">
+                <!-- product left -->
+                
+                <!-- //product left -->
+                <!-- product right -->
+                <div class="left-ads-display col-md-9">
+                    <div class="wrapper_top_shop">
+                        <!-- product-sec1 -->
+                        <div class="product-sec1">
+                            <h3>Private</h3>
+                            <!-- row1-->
+                            {% for j in doc2 %}
+                            <div class="col-md-3 product-men">
+                                <div class="product-chr-info chr">
+                                    <div class="caption">
+                                        
+                                        <h4>{{j.pdoc_title}}</h4>
+                                        <p>{{j.pdoc_category}}.format</p>
+                                        <div class="modal fade" id="private">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                              <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title">To Access The Document :)</h4>
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <form action="/doc_access/{{j.p_id}}/" method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" name="pass3" 
+                                                        placeholder="Enter password" required>
+                                                        
+                                                    </div>
+                                                    
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                                                </form>
+
+                                                
+                                                </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        
+                                        {% if yes == "yes" %}
+                                            <a href="{{ j.pdoc.url }}" class="btn btn-secondary" target="_blank">
+                                                <button type="submit" class="chr-cart pchr-cart">Download Now
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                </button>
+                                            </a>
+                                        {% else %}
+                                            <button data-toggle="modal" data-target="#private" 
+                                            type="submit"  class="chr-cart pchr-cart">
+                                            Password 
+                                            <i class="fa fa-lock" aria-hidden="true"></i>
+                                            </button>    
+                                        {% endif %}  
+                                            
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+
+                        </div>
+
+                        <!-- //product-sec1 -->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+
+{% else %}
+	
+    <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    <h2 class="title-inner">
+                        You are not logged In..
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+{% endif %}
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+       var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+          }
+        }
+    </script>
+
+{% endblock %}
