@@ -17,7 +17,7 @@ def handlesignup(request):
  		fname = request.POST['firstname']
  		lname = request.POST['lastname']
  		pass1 = request.POST['passwd']
- 		
+
  		# Create user
  		myuser = User.objects.create_user(username, email, pass1)
  		myuser.first_name = fname
@@ -99,31 +99,30 @@ def p_docadd(request):
 def doc1(request):
 	doc = Doc_Detail.objects.all()
 	doc2 = Private_Doc.objects.all()
-	print(doc[0].doc)
 	return render(request, 'doc1.html', {'doc1' : doc, 'doc2': doc2})
 
 def doc_access(request, pid):
 	p_doc = Private_Doc.objects.filter(p_id=pid)
 	doc = Doc_Detail.objects.all()
 	doc2 = Private_Doc.objects.all()
-	
+
 	if request.method == "POST":
 		password = request.POST.get('pass3', '')
 
 		if p_doc[0].pdoc_pass == password:
 			yes = "yes"
-			return render(request, 'doc1.html', { 
-				'doc1' : doc, 
-				'doc2': doc2, 
-				'yes':yes, 
+			return render(request, 'doc1.html', {
+				'doc1' : doc,
+				'doc2': doc2,
+				'yes':yes,
 				'msg' : 'Congrats, Now you can access Your Document..'
 				})
 		else:
 			yes = "no"
-			return render(request, 'doc1.html', { 
-				'doc1' : doc, 
-				'doc2': doc2, 
-				'yes':yes, 
+			return render(request, 'doc1.html', {
+				'doc1' : doc,
+				'doc2': doc2,
+				'yes':yes,
 				'msg' : 'Sorry, Password not match...'
 				})
 	else:
@@ -183,5 +182,5 @@ def pdoc_delete(request, pdocid):
 		'doc1' : doc,
 		'doc2': doc2,
 		'yes' : yes,
-		'msg' : 'Private Document Deleted Successfully...'  
-		}) 
+		'msg' : 'Private Document Deleted Successfully...'
+		})
